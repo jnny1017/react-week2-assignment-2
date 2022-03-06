@@ -1,20 +1,18 @@
-export default function TodoList({ todos = [], handleClickDone }) {
+import TodoItem from './TodoItem';
+
+export default function TodoList({ todos, onClickDone }) {
   if (todos.length === 0) {
     return <p>할 일이 없어요!</p>;
   }
 
   return (
     <ol>
-      {todos.map((todoItem) => (
-        <li key={todoItem}>
-          {todoItem}
-          <button
-            type="button"
-            onClick={() => handleClickDone(todoItem)}
-          >
-            완료
-          </button>
-        </li>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onClick={onClickDone}
+        />
       ))}
     </ol>
   );
